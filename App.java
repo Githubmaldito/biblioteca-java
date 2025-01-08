@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import biblioteca.Alexandria;
+import biblioteca.Livro;
+
 public class App {
     public static void main(String[] args) {
 //cria um objeto da classe Alexandria
@@ -7,8 +10,7 @@ public class App {
 //cria um objeto da classe Scanner para ler a entrada do usuário
         Scanner scanner = new Scanner(System.in);
 //variável que armazena a opção escolhida pelo usuário
-        int opcao;
-//laço de repetição que exibe o menu enquanto o usuário não escolher a opção de sair
+        int opcao;//laço de repetição que exibe o menu enquanto o usuário não escolher a opção de sair
         do {
 //exibe o menu com escolhas de opções
             System.out.println("\n1. Cadastrar livro");
