@@ -70,7 +70,11 @@ public class App {
                     break;
 
                 case 4:
-                        
+                        // caso a opção seja 4 - listar usuários
+                        historico.listarUsuarios();
+                        // executa a função listar usuários da classe Sabios
+                        // finaliza o case
+                        break;
 
                 case 5:
                     // caso a opção seja 5 - emprestar livro
