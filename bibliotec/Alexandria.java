@@ -1,4 +1,4 @@
-package biblioteca;
+package bibliotec;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,12 @@ public class Alexandria {
         super();
         this.livros = new ArrayList<>();
         this.livrosEmprestados = new ArrayList<>();
-
     }
 //método que cadastra um livro
 //recebe um objeto do tipo Livro como parâmetro
     public void cadastrarLivro(Livro livro) {
         livros.add(livro);
         System.out.println("\nLivro cadastrado com sucesso!");
-
     } 
 //método que lista os livros
     public void listarLivros() {
@@ -30,9 +28,7 @@ public class Alexandria {
         for (Livro livro : livros) {
 //imprime o título e o autor do livro
             System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
-
         }
-
     }
 //método de emprestar livro
     public void emprestarLivro(String titulo) {
@@ -67,7 +63,5 @@ public class Alexandria {
 //uma mensagem é exibida
             System.out.println("Livro não encontrado!");
         }
-
     }
-
 }
