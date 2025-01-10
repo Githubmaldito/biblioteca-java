@@ -87,7 +87,7 @@ public class App {
                     break;
 
                 case 6:
-                        // caso a opção seja 6 - listar livros emprestados
+                        // caso a opção seja 6 - histórico de empréstimos
                         biblioteca.listarLivrosEmprestados();
                         // executa a função listar livros emprestados da classe Alexandria
                         // finaliza o case
