@@ -45,10 +45,20 @@ public class Alexandria {
                 return;
 
             }else{
-                System.out.println("\nLivro não encontrado");
+                System.out.println("\nLivro não encontrado, verifique se digitou o título corretamente.");
             }
         }
     }
+//método de listar livros emprestados
+    public void listarLivrosEmprestados() {
+//percorre a lista de livros emprestados
+        for (Livro livro : livrosEmprestados) {
+//imprime o título e o autor do livro
+            System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
+        }
+    }
+
+
 //método de devolver livro
     public void devolverLivro(Livro livro) {
 //se a lista de livros emprestados tiver o livro

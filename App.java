@@ -42,7 +42,7 @@ public class App {
                     // e o autor
                     String autor = scanner.nextLine();
                     // cria um objeto do tipo livro com o título e autor digitados
-                    biblioteca.cadastrarLivro(new Livro(titulo, autor));
+                    biblioteca.cadastrarLivro(new Livro(titulo, autor, false));
                     // executa a função cadastrar livro da classe Alexandria
                     // finaliza o case
                     break;
@@ -70,8 +70,7 @@ public class App {
                     break;
 
                 case 4:
-                        historico.listarUsuarios();
-                        break;
+                        
 
                 case 5:
                     // caso a opção seja 5 - emprestar livro
@@ -83,13 +82,19 @@ public class App {
                     // finaliza o case
                     break;
 
+                case 6:
+                        // caso a opção seja 6 - listar livros emprestados
+                        biblioteca.listarLivrosEmprestados();
+                        // executa a função listar livros emprestados da classe Alexandria
+                        // finaliza o case
+                        break;
                 case 7:
                     // caso a opção seja 7 - devolver livro
                     System.out.print("Digite o título do livro para devolver: \n");
                     // o usuário digita o título do livro
                     String tituloDevolucao = scanner.nextLine();
                     // a função devolver livro da classe Alexandria é executada
-                    biblioteca.devolverLivro(new Livro(tituloDevolucao, ""));
+                    biblioteca.devolverLivro(new Livro(tituloDevolucao, "", false));
                     // finaliza o case
                     break;
                 case 8:
