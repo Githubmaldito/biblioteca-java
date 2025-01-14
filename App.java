@@ -25,7 +25,7 @@ public class App {
             System.out.println("3. Listar livros");
             System.out.println("4. Listar usuários");
             System.out.println("5. Emprestar livro");
-            System.out.println("6. Histório de empréstimos");
+            System.out.println("6. Histório de empréstimos do usuário");
             System.out.println("7. Devolver livro");
             System.out.println("8. Sair\n");
             System.out.print("Escolha uma opção: ");
@@ -87,9 +87,12 @@ public class App {
                     break;
 
                 case 6:
-                        // caso a opção seja 6 - histórico de empréstimos
-                        biblioteca.listarLivrosEmprestados();
-                        // executa a função listar livros emprestados da classe Alexandria
+                        // caso a opção seja 6 - histórico de empréstimos do usuário
+                        System.out.print("Digite a matrícula do usuário para ver o histórico de empréstimos: \n");
+                        // o usuário digita a matrícula do usuário
+                        String matriculaHistorico = scanner.nextLine();
+                        // a função histórico de empréstimos do usuário da classe Sabios é executada
+                        historico.historicoEmprestimos(matriculaHistorico);
                         // finaliza o case
                         break;
                 case 7:

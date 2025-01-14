@@ -28,6 +28,11 @@ public class Alexandria {
         for (Livro livro : livros) {
 //imprime o título e o autor do livro
             System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
+//caso o livro esteja emprestado
+            if (livro.getEmprestimo() == true) {
+//uma mensagem é exibida
+                System.out.println(livro.getTitulo() + ", não disponível para empréstimo.");
+            } 
         }
     }
 //método de emprestar livro
@@ -36,9 +41,9 @@ public class Alexandria {
         for (Livro livro : livros) {
 //se o título do livro for igual ao título passado como parâmetro
             if (livro.getTitulo().equals(titulo)) {
-//remove o livro da lista de livros
-                livros.remove(livro);
-//e o adiciona na lista de livros emprestados
+//o atributo emprestimo do livro é setado como true
+                livro.setEmprestimo(true);
+//e o livro é adicionado na lista de livros emprestados
                 livrosEmprestados.add(livro);
                 System.out.println("\nLivro emprestado com sucesso!");
 
