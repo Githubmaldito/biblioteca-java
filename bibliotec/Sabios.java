@@ -38,21 +38,54 @@ public class Sabios {
 
     public void emprestarLivro(String titulo, String matricula) {
         for (Usuario usuario : usuarios) {
+//vê os usuários que estão cadastrados na classe Sabios
             if (usuario.getMatricula().equals(matricula)) {
+//caso a matrícula do usuário seja igual a matrícula passada como parâmetro
                 System.out.println("\nUsuário encontrado!");
+//o usuário é encontrado
                 for (Livro livro : alexandria.getLivros()) {
+//depois vê os livros que estão cadastrados na biblioteca da classe Alexandria
                     if (livro.getTitulo().equals(titulo)) {
-                        System.out.println("\nLivro encontrado!");
+//caso o título do livro seja igual ao título passado como parâmetro
                         if (!livro.getEmprestimo()) {
-                            System.out.println("\nLivro disponível para empréstimo!");
+//se o livro não estiver emprestado
                             livro.setEmprestimo(true);
+//o livro é emprestado
                             System.out.println("\nLivro emprestado com sucesso!");
+                            return;
                         } else {
                             System.out.println("\nLivro já emprestado!");
+                            return;
                         }
                     }
                 }
+                System.out.println("\nLivro não encontrado!");
+                return;
             }
         }
+        System.out.println("\nUsuário não encontrado!");
+    }
+
+    //método de devolver livros emrestados
+    public void devolverLivro(String titulo) {
+        for (Livro livro : alexandria.getLivros()) {
+//vê os livros que estão cadastrados na biblioteca da classe Alexandria
+            if (livro.getTitulo().equals(titulo)) {
+//se o titulo do livro for igual ao titulo passado como parâmetro
+                System.out.println("\nLivro encontrado!");
+                if (livro.getEmprestimo()) {
+//se o livro estiver emprestado
+                    System.out.println("\nLivro devolvido com sucesso!");
+//ele é devolvido
+                    livro.setEmprestimo(false);
+//e o status de emprestado é setado como false
+                    return;
+                } else {
+                    System.out.println("\nLivro não emprestado!");
+                    return;
+                }
+            }
+        }
+        System.out.println("\nLivro não encontrado!");
     }
 }

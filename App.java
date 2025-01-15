@@ -105,8 +105,8 @@ public class App {
                     System.out.print("Digite o título do livro para devolver: \n");
                     // o usuário digita o título do livro
                     String tituloDevolucao = scanner.nextLine();
-                    // a função devolver livro da classe Alexandria é executada
-                    biblioteca.devolverLivro(new Livro(tituloDevolucao, "", false));
+                    // a função devolver livro da classe Sabios é executada
+                    historico.devolverLivro(tituloDevolucao);
                     // finaliza o case
                     break;
                 case 8:
