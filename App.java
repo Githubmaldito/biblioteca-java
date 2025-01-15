@@ -8,11 +8,10 @@ import bibliotec.Usuario;
 import java.util.Scanner;
 
 public class App {
-
     public static void main(String[] args) {
         // cria um objeto da classe Alexandria
         Alexandria biblioteca = new Alexandria();
-        Sabios historico = new Sabios();
+        Sabios historico = new Sabios(biblioteca);
         // cria um objeto da classe Scanner para ler a entrada do usuário
         Scanner scanner = new Scanner(System.in);
         // variável que armazena a opção escolhida pelo usuário
@@ -81,8 +80,11 @@ public class App {
                     System.out.print("Digite o título do livro para emprestar: \n");
                     // o usuário digita o título do livro
                     String tituloEmprestimo = scanner.nextLine();
-                    // a função emprestar livro da classe Alexandria é executada
-                    biblioteca.emprestarLivro(tituloEmprestimo);
+                    System.out.print("Digite a matrícula do usuário para emprestar o livro: \n");
+                    // o usuário digita a matrícula do usuário
+                    String tituloUsuario = scanner.nextLine();
+                    //a função emprestar livro da classe Alexandria é executada
+                    historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
                     // finaliza o case
                     break;
 
@@ -92,7 +94,10 @@ public class App {
                         // o usuário digita a matrícula do usuário
                         String matriculaHistorico = scanner.nextLine();
                         // a função histórico de empréstimos do usuário da classe Sabios é executada
+
                         historico.historicoEmprestimos(matriculaHistorico);
+                        // e o histórico de empréstimos do usuário é exibido
+                        
                         // finaliza o case
                         break;
                 case 7:

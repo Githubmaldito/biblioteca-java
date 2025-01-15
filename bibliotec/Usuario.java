@@ -1,9 +1,12 @@
 //quando o nome do package era "biblioteca" o código não funcionava
 package bibliotec;
+
+import java.util.List;
 public class Usuario{
     private String nome;
     private String email;
     private String matricula;
+    private List<Livro> livrosEmprestados;
 
 
 //constructor de usuario
@@ -30,6 +33,12 @@ public class Usuario{
         return matricula;
     }public void setMatricula(String matricula){
         this.matricula = matricula;
+    }
+
+    public void adicionarLivroEmprestado(Livro livro) {
+        this.livrosEmprestados.add(livro);
+    }public List<Livro> getLivrosEmprestados() {
+        return livrosEmprestados;
     }
 }
 

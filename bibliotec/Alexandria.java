@@ -10,6 +10,9 @@ public class Alexandria {
     private List<Livro> livros;
 //atributo do tipo livro que é uma lista de livros emprestados
     private List<Livro> livrosEmprestados;
+// //criar uma lista com os emprestimos de usuario
+//     private List<Usuario> emprestimosUsuario;
+
 //define o construtor da classe alexandria
     public Alexandria() {
         super();
@@ -31,29 +34,43 @@ public class Alexandria {
 //caso o livro esteja emprestado
             if (livro.getEmprestimo() == true) {
 //uma mensagem é exibida
-                System.out.println(livro.getTitulo() + ", não disponível para empréstimo.");
+                System.out.println(livro.getTitulo() + ", não disponível para empréstimo.\n");
             } 
         }
     }
-//método de emprestar livro
-    public void emprestarLivro(String titulo) {
-//percorre a lista de livros
-        for (Livro livro : livros) {
-//se o título do livro for igual ao título passado como parâmetro
-            if (livro.getTitulo().equals(titulo)) {
-//o atributo emprestimo do livro é setado como true
-                livro.setEmprestimo(true);
-//e o livro é adicionado na lista de livros emprestados
-                livrosEmprestados.add(livro);
-                System.out.println("\nLivro emprestado com sucesso!");
 
-                return;
+    public List<Livro> getLivros() {
 
-            }else{
-                System.out.println("\nLivro não encontrado, verifique se digitou o título corretamente.");
-            }
-        }
+        return livros;
+
     }
+//método de emprestar livro
+//     public void emprestarLivro(String titulo) {
+// //se o livro não estiver emprestado
+//         if (livrosEmprestados.contains(titulo)) {
+// //uma mensagem é exibida
+//             System.out.println("Livro já emprestado!");
+//             return;
+//         }else{
+//            for (Livro livro : livros) {
+// //se o título do livro for igual ao título passado como parâmetro
+//             if (livro.getTitulo().equals(titulo)) {
+// //o atributo emprestimo do livro é setado como true
+//                 livro.setEmprestimo(true);
+// //e o livro é adicionado na lista de livros emprestados
+//                 livrosEmprestados.add(livro);
+//                 System.out.println("\nLivro emprestado com sucesso!");
+
+//                 return;
+
+//             }else{
+//                 System.out.println("\nLivro não encontrado, verifique se digitou o título corretamente.");
+//             }
+//         }
+//     } 
+//         }
+//percorre a lista de livros
+        
 //método de listar livros emprestados
     public void listarLivrosEmprestados() {
 //percorre a lista de livros emprestados
