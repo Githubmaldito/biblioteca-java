@@ -26,7 +26,7 @@ public class Sabios {
         for (Usuario usuario : usuarios) {
             if (usuario.getMatricula().equals(matricula)) {
                 System.out.println("\nUsuário encontrado!");
-                System.out.println("\nHistórico de empréstimos usuário: ");
+                System.out.println("\nHistórico de empréstimos usuário " + usuario.getNome() + ":");
                 for (Livro livro : alexandria.getLivros()) {
                     if (livro.getEmprestimo()) {
                         System.out.println("Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor());
