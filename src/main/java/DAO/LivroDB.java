@@ -24,18 +24,5 @@ public class LivroDB {
         }
     }
 
-    public void emprestarLivro(String titulo){
-        String sql = "UPDATE LIVROS SET EMPRESTIMO = ? WHERE TITULO_LIVRO = ?";
-
-        PreparedStatement ps = null;
-        try {
-            ps = Conexao.getConexao().prepareStatement(sql);
-            ps.setBoolean(1, true);
-            ps.setString(2, titulo);
-            ps.execute();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    
 }

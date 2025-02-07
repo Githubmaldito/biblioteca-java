@@ -3,6 +3,7 @@
 
 import java.util.Scanner;
 
+import DAO.EmprestimosBD;
 import DAO.LivroDB;
 import DAO.UserDB;
 import bibliotec.Alexandria;
@@ -92,7 +93,7 @@ public class App {
                     String tituloUsuario = scanner.nextLine();
                     //a função emprestar livro da classe Alexandria é executada
                     historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
-                    new LivroDB().emprestarLivro(tituloEmprestimo);
+                    new EmprestimosBD().emprestarLivro(tituloEmprestimo);
                     // finaliza o case
 
                     break;
@@ -116,6 +117,7 @@ public class App {
                     String tituloDevolucao = scanner.nextLine();
                     // a função devolver livro da classe Sabios é executada
                     historico.devolverLivro(tituloDevolucao);
+                    new EmprestimosBD().devolverLivro(tituloDevolucao);
                     // finaliza o case
                     break;
                 case 8:
