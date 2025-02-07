@@ -92,8 +92,9 @@ public class App {
                     String tituloUsuario = scanner.nextLine();
                     //a função emprestar livro da classe Alexandria é executada
                     historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
+                    new LivroDB().emprestarLivro(tituloEmprestimo);
                     // finaliza o case
-                    
+
                     break;
 
                 case 6:
