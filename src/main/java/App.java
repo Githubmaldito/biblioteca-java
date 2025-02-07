@@ -94,6 +94,8 @@ public class App {
                     //a função emprestar livro da classe Alexandria é executada
                     historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
                     new EmprestimosBD().emprestarLivro(tituloEmprestimo);
+                    new EmprestimosBD().historicoEmprestimos(tituloEmprestimo, tituloUsuario);;
+                    
                     // finaliza o case
 
                     break;

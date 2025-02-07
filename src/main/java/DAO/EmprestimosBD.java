@@ -36,5 +36,19 @@ public class EmprestimosBD {
             e.printStackTrace();
         }
     }
-    
+
+    public void historicoEmprestimos(String titulo, String matricula){
+        String sql = "INSERT INTO EMPRESTIMOS (TITULO_LIVRO, MATRICULA_USUARIO) VALUES (?, ?)";
+
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, titulo);
+            ps.setString(2, matricula);
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
