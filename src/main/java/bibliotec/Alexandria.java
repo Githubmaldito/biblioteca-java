@@ -6,7 +6,7 @@ import java.util.List;
 //cria a classe que será a biblioteca
 //classe pública permite que outras classes acessem
 public class Alexandria {
-//atributo privado livros que é uma lista de objetos do tipo Livro
+//atributo privado livros que é uma lista de objetos do tipo Livro 
     private List<Livro> livros;
 //atributo do tipo livro que é uma lista de livros emprestados
     private List<Livro> livrosEmprestados;

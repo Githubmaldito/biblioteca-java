@@ -3,6 +3,7 @@
 
 import java.util.Scanner;
 
+import DAO.LivroDB;
 import DAO.UserDB;
 import bibliotec.Alexandria;
 import bibliotec.Livro;
@@ -46,6 +47,7 @@ public class App {
                     biblioteca.cadastrarLivro(new Livro(titulo, autor, false));
                     // executa a função cadastrar livro da classe Alexandria
                     // finaliza o case
+                    new LivroDB().cadastrarLivro(new Livro(titulo, autor, false));
                     break;
 
                 case 2:
@@ -91,6 +93,7 @@ public class App {
                     //a função emprestar livro da classe Alexandria é executada
                     historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
                     // finaliza o case
+                    
                     break;
 
                 case 6:
