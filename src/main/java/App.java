@@ -44,11 +44,14 @@ public class App {
                     System.out.print("Digite o autor do livro: ");
                     // e o autor
                     String autor = scanner.nextLine();
+
+                    System.err.println("Digite o ISBN do livro: ");
+                    String isbn = scanner.nextLine();
                     // cria um objeto do tipo livro com o título e autor digitados
-                    biblioteca.cadastrarLivro(new Livro(titulo, autor, false));
+                    biblioteca.cadastrarLivro(new Livro(titulo, autor, false, isbn));
                     // executa a função cadastrar livro da classe Alexandria
                     // finaliza o case
-                    new LivroDB().cadastrarLivro(new Livro(titulo, autor, false));
+                    new LivroDB().cadastrarLivro(new Livro(titulo, autor, false, isbn));
                     break;
 
                 case 2:

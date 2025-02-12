@@ -45,7 +45,6 @@ public class Alexandria {
 
     }
 
-    
 //método de emprestar livro
 //     public void emprestarLivro(String titulo) {
 // //se o livro não estiver emprestado
