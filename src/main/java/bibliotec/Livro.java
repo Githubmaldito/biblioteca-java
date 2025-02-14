@@ -1,4 +1,5 @@
 package bibliotec;
+
 public class Livro {
     private String titulo;
     private String autor;
@@ -17,14 +18,12 @@ public class Livro {
     public String getTitulo() {
         return titulo;
     }public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+        this.titulo = titulo;}
 
     public String getAutor() {
         return autor;
     }public void setAutor(String autor) {
-        this.autor = autor;
-    }
+        this.autor = autor;}
 
     public String getIsbn() {
         return this.isbn;
@@ -34,8 +33,6 @@ public class Livro {
     public boolean getEmprestimo() {
         return emprestado;
     }public void setEmprestimo(boolean emprestado) {
-        this.emprestado = emprestado;
-    }
+        this.emprestado = emprestado;}
 
 }
-
