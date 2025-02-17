@@ -15,16 +15,28 @@ public class Conexao {
 
     public static Connection getConexao() {
 
+
+        //versão antiga da conexao
+        // try {
+        //     if (conn == null) {
+        //         conn = DriverManager.getConnection(url, user, password);
+        //         return conn;
+        //     } else {
+        //         return conn;
+        //     }
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        //     return null;
+        // }
+
         try {
-            if (conn == null) {
-                conn = DriverManager.getConnection(url, user, password);
-                return conn;
-            } else {
-                return conn;
-            }
+            //cria e retorna uma nova conexão
+            //agora não verifica mais se a conexão é nula
+            //(tava dando erro na listagem de usuario)
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RuntimeException("Erro ao conectar ao banco de dados", e);
         }
     }
 }

@@ -1,7 +1,6 @@
 package DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,35 +39,21 @@ public class LivroDB {
     // }
 
     public void listarLivros() {
-        // Dados de conexão com o banco de dados
-        String url = "jdbc:mysql://127.0.0.1:3306/banco"; // URL do banco de dados
-        String user = "root"; // Usuário do banco de dados
-        String password = "senha123"; // Senha do banco de dados
+        //se conecta ao bd usando a o método da classe Conexao
+        try (Connection conn = Conexao.getConexao();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM livros")) {
 
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            // 1. Estabelecer a conexão com o banco de dados
-            conn = DriverManager.getConnection(url, user, password);
-
-            // 2. Criar um statement para executar a consulta
-            stmt = conn.createStatement();
-
-            // 3. Executar a consulta SQL para selecionar todos os livros
-            String sql = "SELECT * FROM livros"; // Substitua "livros" pelo nome da sua tabela
-            rs = stmt.executeQuery(sql);
-
-            // 4. Processar o resultado e exibir os livros
             System.out.println("\n--- Lista de Livros ---");
+
             while (rs.next()) {
+                //enquanto houver livros, vai pegar pegar as colunas do banco de dados
                 String titulo = rs.getString("titulo");
                 String autor = rs.getString("autor");
                 String isbn = rs.getString("isbn");
                 boolean emprestado = rs.getBoolean("emprestimo");
 
-                // Exibir os detalhes do livro no terminal
+                // e exibir no terminal
                 System.out.println("Título: " + titulo);
                 System.out.println("Autor: " + autor);
                 System.out.println("ISBN: " + isbn);
@@ -77,15 +62,7 @@ public class LivroDB {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            // 5. Fechar os recursos
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            System.out.println("Erro ao listar livros: " + e.getMessage());
         }
     }
 

@@ -1,6 +1,9 @@
 package DAO;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import bibliotec.Usuario;
 import conex.Conexao;
@@ -22,17 +25,44 @@ public class UserDB {
         }
     }
 
-    public void listarUsuarios(){
-        String sql = "SELECT * FROM USUARIOS";
-        PreparedStatement ps = null;
-        try {
-            ps = Conexao.getConexao().prepareStatement(sql);
-            ps.execute();
-        } catch (SQLException e) {
+    // public void listarUsuarios(){
+    //     String sql = "SELECT * FROM USUARIOS";
+    //     PreparedStatement ps = null;
+    //     try {
+    //         ps = Conexao.getConexao().prepareStatement(sql);
+    //         ps.execute();
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    public void listarUsuarios() {
+        // Obtém a conexão com o banco de dados usando a classe Conexao
+        try (Connection conn = Conexao.getConexao();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM usuarios")) {
+
+
+            System.out.println("\n--- Lista de Usuários ---");
+
+            // Itera sobre os resultados e exibe os dados no terminal
+            while (rs.next()) {
+                String nome = rs.getString("nome");
+                String email = rs.getString("email");
+                String matricula = rs.getString("matricula");
+
+                // Exibe os detalhes do usuário no terminal
+                System.out.println("Nome: " + nome);
+                System.out.println("E-mail: " + email);
+                System.out.println("Matrícula: " + matricula);
+                System.out.println("-----------------------------");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
     }
-
+    
     public void historicoEmprestimos(String matricula){
         String sql = "SELECT * FROM EMPRESTIMOS WHERE MATRICULA_USUARIO = ?";
         PreparedStatement ps = null;
