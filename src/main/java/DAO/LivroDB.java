@@ -1,7 +1,11 @@
 package DAO;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import bibliotec.Livro;
 import conex.Conexao;
@@ -24,16 +28,67 @@ public class LivroDB {
         }
     }
 
-    public void listarLivros(){
-        String sql = "SELECT * FROM LIVROS";
-        PreparedStatement ps = null;
+    // public void listarLivros(){
+    //     String sql = "SELECT * FROM LIVROS";
+    //     PreparedStatement ps = null;
+    //     try {
+    //         ps = Conexao.getConexao().prepareStatement(sql);
+    //         ps.execute();
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    public void listarLivros() {
+        // Dados de conexão com o banco de dados
+        String url = "jdbc:mysql://127.0.0.1:3306/banco"; // URL do banco de dados
+        String user = "root"; // Usuário do banco de dados
+        String password = "senha123"; // Senha do banco de dados
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
         try {
-            ps = Conexao.getConexao().prepareStatement(sql);
-            ps.execute();
-        } catch (SQLException e) {
+            // 1. Estabelecer a conexão com o banco de dados
+            conn = DriverManager.getConnection(url, user, password);
+
+            // 2. Criar um statement para executar a consulta
+            stmt = conn.createStatement();
+
+            // 3. Executar a consulta SQL para selecionar todos os livros
+            String sql = "SELECT * FROM livros"; // Substitua "livros" pelo nome da sua tabela
+            rs = stmt.executeQuery(sql);
+
+            // 4. Processar o resultado e exibir os livros
+            System.out.println("\n--- Lista de Livros ---");
+            while (rs.next()) {
+                String titulo = rs.getString("titulo");
+                String autor = rs.getString("autor");
+                String isbn = rs.getString("isbn");
+                boolean emprestado = rs.getBoolean("emprestimo");
+
+                // Exibir os detalhes do livro no terminal
+                System.out.println("Título: " + titulo);
+                System.out.println("Autor: " + autor);
+                System.out.println("ISBN: " + isbn);
+                System.out.println("Status: " + (emprestado ? "Emprestado" : "Disponível"));
+                System.out.println("-----------------------------");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            // 5. Fechar os recursos
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     public void emprestarLivro(String titulo, String matricula){
         String sql = "INSERT INTO EMPRESTIMOS (TITULO_LIVRO, MATRICULA_USUARIO) VALUES (?, ?)";
@@ -55,7 +110,6 @@ public class LivroDB {
             e.printStackTrace();
         }
     }
-
     
     public void devolverLivro(String titulo){
         String sql = "UPDATE LIVROS SET EMPRESTIMO = ? WHERE TITULO = ?";

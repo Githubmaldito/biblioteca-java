@@ -40,7 +40,7 @@ public class App {
                     // o usuario digita o título do livro
                     String titulo = scanner.nextLine();
                     System.out.print("Digite o autor do livro: ");
-                    // e o autor
+                    // e o autor 
                     String autor = scanner.nextLine();
 
                     System.err.println("Digite o ISBN do livro: ");
