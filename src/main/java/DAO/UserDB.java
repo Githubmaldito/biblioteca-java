@@ -21,4 +21,27 @@ public class UserDB {
             e.printStackTrace();
         }
     }
+
+    public void listarUsuarios(){
+        String sql = "SELECT * FROM USUARIOS";
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void historicoEmprestimos(String matricula){
+        String sql = "SELECT * FROM EMPRESTIMOS WHERE MATRICULA_USUARIO = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, matricula);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

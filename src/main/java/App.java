@@ -3,19 +3,16 @@
 
 import java.util.Scanner;
 
-import DAO.EmprestimosBD;
 import DAO.LivroDB;
 import DAO.UserDB;
-import bibliotec.Alexandria;
 import bibliotec.Livro;
-import bibliotec.Sabios;
 import bibliotec.Usuario;
 
 public class App {
     public static void main(String[] args) {
         // cria um objeto da classe Alexandria
-        Alexandria biblioteca = new Alexandria();
-        Sabios historico = new Sabios(biblioteca);
+        // Alexandria biblioteca = new Alexandria();
+        // Sabios historico = new Sabios(biblioteca);
         // cria um objeto da classe Scanner para ler a entrada do usuário
         Scanner scanner = new Scanner(System.in);
         // variável que armazena a opção escolhida pelo usuário
@@ -34,7 +31,8 @@ public class App {
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
-            // switch case que verifica a opção escolhida pelo usuário
+            // switch case que verifica a opção escolhida pelo usuário1
+        
             switch (opcao) {
                 // caso a opção seja 1 - cadastrar livro
                 case 1:
@@ -48,10 +46,13 @@ public class App {
                     System.err.println("Digite o ISBN do livro: ");
                     String isbn = scanner.nextLine();
                     // cria um objeto do tipo livro com o título e autor digitados
-                    biblioteca.cadastrarLivro(new Livro(titulo, autor, false, isbn));
+                    // biblioteca.cadastrarLivro(new Livro(titulo, autor, false, isbn));
                     // executa a função cadastrar livro da classe Alexandria
                     // finaliza o case
+
+                    //aqui o livro é cadastrado no banco de dados
                     new LivroDB().cadastrarLivro(new Livro(titulo, autor, false, isbn));
+                    
                     break;
 
                 case 2:
@@ -66,7 +67,7 @@ public class App {
                     System.out.println("Digite o e-mail do usuário: ");
                     String email = scanner.nextLine();
 
-                    historico.cadastrarUsuario(new Usuario(nome, email, matricula));
+                    //historico.cadastrarUsuario(new Usuario(nome, email, matricula));
 
                     new UserDB().cadastrarUsuario(new Usuario(nome, email, matricula));
                     
@@ -75,14 +76,20 @@ public class App {
                 // caso a opção seja 3 - listar livros
                 case 3:
                     // executa a função listar livros da classe Alexandria
-                    biblioteca.listarLivros();
+                    //biblioteca.listarLivros();
+
+                    //lista os livros que estão no BD
+                    new LivroDB().listarLivros();
                     // finaliza o case
                     break;
 
                 case 4:
                         // caso a opção seja 4 - listar usuários
-                        historico.listarUsuarios();
+                        //historico.listarUsuarios();
                         // executa a função listar usuários da classe Sabios
+
+                        //lista os users que estão no BD
+                        new UserDB().listarUsuarios();
                         // finaliza o case
                         break;
 
@@ -95,10 +102,10 @@ public class App {
                     // o usuário digita a matrícula do usuário
                     String tituloUsuario = scanner.nextLine();
                     //a função emprestar livro da classe Alexandria é executada
-                    historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
-                    new EmprestimosBD().emprestarLivro(tituloEmprestimo);
-                    new EmprestimosBD().historicoEmprestimos(tituloEmprestimo, tituloUsuario);;
+                    // historico.emprestarLivro(tituloEmprestimo, tituloUsuario);
+
                     
+                    new LivroDB().emprestarLivro(tituloEmprestimo, tituloUsuario);
                     // finaliza o case
 
                     break;
@@ -109,10 +116,10 @@ public class App {
                         // o usuário digita a matrícula do usuário
                         String matriculaHistorico = scanner.nextLine();
                         // a função histórico de empréstimos do usuário da classe Sabios é executada
-
-                        historico.historicoEmprestimos(matriculaHistorico);
+                        // historico.historicoEmprestimos(matriculaHistorico);
                         // e o histórico de empréstimos do usuário é exibido
                         
+                        new UserDB().historicoEmprestimos(matriculaHistorico);
                         // finaliza o case
                         break;
                 case 7:
@@ -121,8 +128,9 @@ public class App {
                     // o usuário digita o título do livro
                     String tituloDevolucao = scanner.nextLine();
                     // a função devolver livro da classe Sabios é executada
-                    historico.devolverLivro(tituloDevolucao);
-                    new EmprestimosBD().devolverLivro(tituloDevolucao);
+                    // historico.devolverLivro(tituloDevolucao);
+
+                    new LivroDB().devolverLivro(tituloDevolucao);
                     // finaliza o case
                     break;
                 case 8:
