@@ -27,7 +27,8 @@ public class App {
             System.out.println("5. Emprestar livro");
             System.out.println("6. Histório de empréstimos do usuário");
             System.out.println("7. Devolver livro");
-            System.out.println("8. Sair\n");
+            System.out.println("8. Remover livro");
+            System.out.println("9. Sair\n");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -133,7 +134,18 @@ public class App {
                     new LivroDB().devolverLivro(tituloDevolucao);
                     // finaliza o case
                     break;
+
                 case 8:
+                    // caso a opção seja 8 - remover livro
+                    System.out.print("Digite o título do livro para remover: \n");
+                    // o usuário digita o título do livro
+                    String tituloRemocao = scanner.nextLine();
+                    //como a função de remover livro tem como parametro um objeto do tipo livro,
+                    //é criado um objeto do tipo livro com o título digitado
+                    Livro livroRemocao = new Livro(tituloRemocao, null, false, null);
+                    new LivroDB().removerLivro(livroRemocao); 
+                    
+                case 9:
                     // caso o usuário escolha a opção 8 - sair
                     System.out.println("Saindo...");
                     // é exibida uma mensagem de saída e o programa é finalizado
@@ -143,7 +155,7 @@ public class App {
                     System.out.println("Opção inválida!");
             }
             // o menu será exibido enquanto o usuário não escolher a opção de sair
-        } while (opcao != 8);
+        } while (opcao != 9);
         // fecha o scanner
         scanner.close();
     }

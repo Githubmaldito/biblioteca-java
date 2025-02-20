@@ -45,13 +45,14 @@ public class UserDB {
 
             System.out.println("\n--- Lista de Usuários ---");
 
-            // Itera sobre os resultados e exibe os dados no terminal
+            //enquanto houver resultados na query
             while (rs.next()) {
+            //pega as colunas do banco de dados
                 String nome = rs.getString("nome");
                 String email = rs.getString("email");
                 String matricula = rs.getString("matricula");
 
-                // Exibe os detalhes do usuário no terminal
+                //e os exibe no terminal
                 System.out.println("Nome: " + nome);
                 System.out.println("E-mail: " + email);
                 System.out.println("Matrícula: " + matricula);
@@ -62,16 +63,26 @@ public class UserDB {
             System.out.println("Erro ao listar usuários: " + e.getMessage());
         }
     }
-    
-    public void historicoEmprestimos(String matricula){
-        String sql = "SELECT * FROM EMPRESTIMOS WHERE MATRICULA_USUARIO = ?";
-        PreparedStatement ps = null;
-        try {
-            ps = Conexao.getConexao().prepareStatement(sql);
-            ps.setString(1, matricula);
-            ps.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        public void historicoEmprestimos(String matricula){
+            try (
+                Connection conn = Conexao.getConexao();
+                Statement stmt = conn.createStatement();
+            //ao invés de usar um preparedtatement, uso a matricula direto na query
+                ResultSet rs = stmt.executeQuery("SELECT * FROM EMPRESTIMOS WHERE MATRICULA_USUARIO = '" + matricula + "'")) {
+
+                System.out.println("\n---Empréstimos do usuário:---");
+                while (rs.next()) {
+                    String titulo = rs.getString("titulo_livro");
+                    String matriculaUsuario = rs.getString("matricula_usuario");
+
+                    System.out.println("Título: " + titulo);
+                    System.out.println("Matrícula: " + matriculaUsuario);
+                    System.out.println("-----------------------------");
+                }
+                
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         }
-    }
 }

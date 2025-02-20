@@ -27,6 +27,22 @@ public class LivroDB {
         }
     }
 
+    public void removerLivro(Livro livro){
+        String sql = "DELETE FROM LIVROS WHERE TITULO = ?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, livro.getTitulo());
+            
+            ps.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     // public void listarLivros(){
     //     String sql = "SELECT * FROM LIVROS";
     //     PreparedStatement ps = null;
