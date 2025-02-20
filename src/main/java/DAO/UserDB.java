@@ -82,7 +82,8 @@ public class UserDB {
                 }
                 
             } catch (Exception e) {
-                // TODO: handle exception
+                e.printStackTrace();
+                System.out.println("Ocorreu um erro ao listar os empréstimos do usuário." + e.getMessage());
             }
         }
 }
